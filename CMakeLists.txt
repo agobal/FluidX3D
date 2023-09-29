@@ -1,9 +1,7 @@
 cmake_minimum_required(VERSION 3.11)
-set(PROJECT_NAME FluidX3D)
+set(PROJECT_NAME fluidx3d)
 
-project(FluidX3D)
-
-#add_library(FluidX3D INTERFACE)
+add_library(fluidx3d INTERFACE)
 
 ################################################################################
 # Source groups
@@ -43,10 +41,10 @@ set(ALL_FILES
 ################################################################################
 # Target
 ################################################################################
-add_executable(${PROJECT_NAME} ${ALL_FILES})
+#add_executable(${PROJECT_NAME} ${ALL_FILES})
 
 #use_props(${PROJECT_NAME} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
-set(ROOT_NAMESPACE FluidX3D)
+set(ROOT_NAMESPACE fluidx3d)
 
 ################################################################################
 # Output directory
@@ -60,14 +58,14 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 ################################################################################
 # Include directories
 ################################################################################
-target_include_directories(${PROJECT_NAME} PUBLIC
+target_include_directories(${PROJECT_NAME} INTERFACE
     "${CMAKE_CURRENT_SOURCE_DIR}/src/OpenCL/include"
 )
 
 ################################################################################
 # Compile definitions
 ################################################################################
-target_compile_definitions(${PROJECT_NAME} PRIVATE
+target_compile_definitions(${PROJECT_NAME} INTERFACE
     "_MBCS"
 )
 
@@ -75,7 +73,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
 # Compile and link options
 ################################################################################
 if(MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE
+    target_compile_options(${PROJECT_NAME} INTERFACE
         /permissive-;
         /MP;
         /std:c++17;
@@ -91,7 +89,7 @@ if(MSVC)
         /wd6386;
         ${DEFAULT_CXX_EXCEPTION_HANDLING}
     )
-    target_link_options(${PROJECT_NAME} PRIVATE
+    target_link_options(${PROJECT_NAME} INTERFACE
         /DEBUG:FULL;
         /SUBSYSTEM:CONSOLE;
         /OPT:REF;
@@ -117,9 +115,9 @@ set(ADDITIONAL_LIBRARY_DEPENDENCIES
     "odbc32;"
     "odbccp32"
 )
-target_link_libraries(${PROJECT_NAME} PRIVATE "${ADDITIONAL_LIBRARY_DEPENDENCIES}")
+target_link_libraries(${PROJECT_NAME} INTERFACE "${ADDITIONAL_LIBRARY_DEPENDENCIES}")
 
-target_link_directories(${PROJECT_NAME} PRIVATE
+target_link_directories(${PROJECT_NAME} INTERFACE
     "${CMAKE_SOURCE_DIR}/src/OpenCL/lib"
 )
 
