@@ -3,6 +3,8 @@ set(PROJECT_NAME fluidx3d)
 
 add_library(fluidx3d INTERFACE)
 
+find_package(OpenCL REQUIRED)
+
 ################################################################################
 # Source groups
 ################################################################################
@@ -59,7 +61,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 # Include directories
 ################################################################################
 target_include_directories(${PROJECT_NAME} INTERFACE
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/OpenCL/include"
+    ${OpenCL_INCLUDE_DIRS}
 )
 
 ################################################################################
@@ -72,36 +74,35 @@ target_compile_definitions(${PROJECT_NAME} INTERFACE
 ################################################################################
 # Compile and link options
 ################################################################################
-if(MSVC)
-    target_compile_options(${PROJECT_NAME} INTERFACE
-        /permissive-;
-        /MP;
-        /std:c++17;
-        /O2;
-        /Oi;
-        /sdl;
-        /Gy;
-        /W3;
-        ${DEFAULT_CXX_DEBUG_INFORMATION_FORMAT};
-        /Ot;
-        /fp:fast;
-        /wd26451;
-        /wd6386;
-        ${DEFAULT_CXX_EXCEPTION_HANDLING}
-    )
-    target_link_options(${PROJECT_NAME} INTERFACE
-        /DEBUG:FULL;
-        /SUBSYSTEM:CONSOLE;
-        /OPT:REF;
-        /OPT:ICF
-    )
-endif()
+#if(MSVC)
+#    target_compile_options(${PROJECT_NAME} INTERFACE
+#        /permissive-;
+#        /MP;
+#        /std:c++17;
+#        /O2;
+#        /Oi;
+#        /sdl;
+#        /Gy;
+#        /W3;
+#        ${DEFAULT_CXX_DEBUG_INFORMATION_FORMAT};
+#        /Ot;
+#        /fp:fast;
+#        /wd26451;
+#        /wd6386;
+#        ${DEFAULT_CXX_EXCEPTION_HANDLING}
+#    )
+#    target_link_options(${PROJECT_NAME} INTERFACE
+#        /DEBUG:FULL;
+#        /SUBSYSTEM:CONSOLE;
+#        /OPT:REF;
+#        /OPT:ICF
+#    )
+#endif()
 
 ################################################################################
 # Dependencies
 ################################################################################
 set(ADDITIONAL_LIBRARY_DEPENDENCIES
-    "OpenCL;"
     "kernel32;"
     "user32;"
     "gdi32;"
@@ -115,9 +116,9 @@ set(ADDITIONAL_LIBRARY_DEPENDENCIES
     "odbc32;"
     "odbccp32"
 )
-target_link_libraries(${PROJECT_NAME} INTERFACE "${ADDITIONAL_LIBRARY_DEPENDENCIES}")
+target_link_libraries(${PROJECT_NAME} INTERFACE "${ADDITIONAL_LIBRARY_DEPENDENCIES}" ${OpenCL_LIBRARIES})
 
-target_link_directories(${PROJECT_NAME} INTERFACE
-    "${CMAKE_SOURCE_DIR}/src/OpenCL/lib"
-)
+#target_link_directories(${PROJECT_NAME} INTERFACE
+#    "${CMAKE_SOURCE_DIR}/src/OpenCL/lib"
+#)
 
