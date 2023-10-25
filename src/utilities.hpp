@@ -32,7 +32,7 @@ typedef unsigned int uint;
 typedef int64_t slong;
 typedef uint64_t ulong;
 #define pif 3.1415927f
-#define pi 3.141592653589793
+#define pid 3.141592653589793
 #define min_char ((char)-128)
 #define max_char ((char)127)
 #define max_uchar ((uchar)255)
@@ -292,10 +292,10 @@ inline int log2_fast(const double x) {
 	return (as_ulong(x)>>52)-1023;
 }
 inline double degrees(const double radians) {
-	return (180.0/pi)*radians;
+	return (180.0/pid)*radians;
 }
 inline double radians(const double degrees) {
-	return (pi/180.0)*degrees;
+	return (pid/180.0)*degrees;
 }
 inline double find_zero(double f(double), double min=-1.0, double max=1.0, double offset=0.0) { // find zero of function f(x) in [min, max] by nested intervals
 	const uint n = log2_fast((max-min)*9.007199254740992E15); // evil log2 hack: log2(x)=(as_ulong(x)>>52)-1023
@@ -2792,11 +2792,11 @@ inline string trim(const string& s) { // removes whitespace characters from begi
 }
 inline bool begins_with(const string& s, const string& match) {
 	if(match.size()>s.size()) return false;
-	else return equal(match.begin(), match.end(), s.begin());
+	else return std::equal(match.begin(), match.end(), s.begin());
 }
 inline bool ends_with(const string& s, const string& match) {
 	if(match.size()>s.size()) return false;
-	else return equal(match.rbegin(), match.rend(), s.rbegin());
+	else return std::equal(match.rbegin(), match.rend(), s.rbegin());
 }
 template<class T> inline bool contains(const vector<T>& v, const T& match) {
 	return find(v.begin(), v.end(), match)!=v.end();

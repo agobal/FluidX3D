@@ -92,8 +92,8 @@ public:
 	float f_from_u_Poiseuille_3D(const float u, const float rho, const float nu, const float R) const { return 4.0f*u*rho*nu/sq(R); } // force per volume for 3D Poiseuille flow in cylinder f = 4*u*rho*nu/R^2, u is center velocity, R is cylinder radius
 	float f_from_u_rectangular_duct(const float w, const float h, const float rho, const float nu, const float u) { // force per volume f from center velocity u in rectangular channel with (-w/2<=y<=w/2, -h/2<=z<=h/2)
 		const int N = 23u; // ux will become NaN for N>23 due to cosh(x) blowing up
-		const double A = (cb(pi)*(double)rho*(double)nu*(double)u)/(4.0*sq((double)h));
-		const double piw2h=pi*0.5*(double)w/(double)h, pi2=pi*0.5;
+		const double A = (cb(pid)*(double)rho*(double)nu*(double)u)/(4.0*sq((double)h));
+		const double piw2h=pid*0.5*(double)w/(double)h, pi2=pid*0.5;
 		double sum = 0.0;
 		for(int i=2*N-1; i>=1; i-=2) { // calculate terms in reverse (smallest first) to mitigate numerical loss of significance
 			const double n = (double)i;

@@ -99,12 +99,12 @@ void main_physics() {
 #ifndef GRAPHICS
 int main(int argc, char* argv[]) {
 	main_arguments = get_main_arguments(argc, argv);
-	thread compute_thread(main_physics);
-	do { // main console loop
-		info.print_update();
-		sleep(0.050);
-	} while(running);
-	compute_thread.join();
+	//thread compute_thread(main_physics);
+	//do { // main console loop
+	//	info.print_update();
+	//	sleep(0.050);
+	//} while(running);
+	//compute_thread.join();
 	return 0;
 }
 #endif // GRAPHICS
