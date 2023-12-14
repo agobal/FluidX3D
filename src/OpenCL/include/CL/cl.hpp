@@ -76,7 +76,7 @@
  * #if defined(__APPLE__) || defined(__MACOSX)
  * #include <OpenCL/cl.hpp>
  * #else
- * #include <CL/cl.hpp>
+ * #include <opencl/include/CL/cl.hpp>
  * #endif
  * #include <cstdio>
  * #include <cstdlib>
@@ -150,8 +150,8 @@
 #include <malloc.h>
 
 #if defined(USE_DX_INTEROP)
-#include <CL/cl_d3d10.h>
-#include <CL/cl_dx9_media_sharing.h>
+#include <opencl/include/CL/cl_d3d10.h>
+#include <opencl/include/CL/cl_dx9_media_sharing.h>
 #endif
 #endif // _WIN32
 
@@ -161,13 +161,13 @@
 
 // 
 #if defined(USE_CL_DEVICE_FISSION)
-#include <CL/cl_ext.h>
+#include <opencl/include/CL/cl_ext.h>
 #endif
 
 #if defined(__APPLE__) || defined(__MACOSX)
 #include <OpenCL/opencl.h>
 #else
-#include <CL/opencl.h>
+#include <opencl/include/CL/opencl.h>
 #endif // !__APPLE__
 
 #if (_MSC_VER >= 1700) || (__cplusplus >= 201103L)

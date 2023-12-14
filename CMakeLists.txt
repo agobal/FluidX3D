@@ -63,7 +63,7 @@ target_sources(fluidx3d PRIVATE ${ALL_FILES})
 ################################################################################
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${OpenCL_INCLUDE_DIRS}
-#"${CMAKE_CURRENT_SOURCE_DIR}/src/OpenCL/include"    
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/OpenCL/include"    
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

@@ -39,10 +39,10 @@ extern "C" {
 
 #else
 
-#include <CL/cl.h>
-#include <CL/cl_gl.h>
-#include <CL/cl_gl_ext.h>
-#include <CL/cl_ext.h>
+#include <opencl/include/CL/cl.h>
+#include <opencl/include/CL/cl_gl.h>
+#include <opencl/include/CL/cl_gl_ext.h>
+#include <opencl/include/CL/cl_ext.h>
 
 #endif
 
